@@ -87,6 +87,7 @@ button:disabled {
 	background-size: cover;
 	background-position: center;
 	background-color: #eee;
+	display: none;
 }
 
 .login-notice {
@@ -238,6 +239,9 @@ button:disabled {
 @media screen and (min-width: 40em) {
 	.login-form {
 		padding-top: 5em;
+	}
+	.login-cover {
+		display: unset;
 	}
 }
 
