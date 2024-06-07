@@ -2,7 +2,7 @@
 // Version 1.2.1
 
 const config = {
-	version: "1.2.2",
+	version: "1.2.5",
 	// the full path the site running the DriveWorks Live API
 	// serverUrl: "https://dw21.api.yourdomain.com",
 	serverUrl: "",
@@ -66,6 +66,9 @@ const config = {
 	// Set the title of the site, this will be displayed in the browser tab
 	// pageName | siteName
 	siteName: "TPM",
+	// Set whether a username or email address will be used
+	// username | email address
+	usernameType: "Username",
 	loginReturnUrls: true, // Toggle appending return urls to restore the previous location when redirected to the login form
 	locale: "en-US", // Set the default locale for displaying dates and numbers
 	dateFormat: {

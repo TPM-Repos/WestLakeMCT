@@ -17,6 +17,8 @@ const loginNotice = document.getElementById("login-notice")
 const forgotLink = document.getElementById("forgot-link")
 const createLink = document.getElementById("create-link")
 const copyright = document.querySelector(".login-copyright")
+const usernameLabel = document.querySelector("#username-label")
+const usernameInput = document.querySelector("#login-username")
 
 // Error Messages
 const genericErrorMessage = "There has been an issue."
@@ -29,7 +31,8 @@ let client
 	/**
 	 * On page load.
 	 */
-;(async function () {
+(async function () {
+	setUsernameType()
 	setLoginCover()
 	addCarouselImages()
 
@@ -445,4 +448,18 @@ function setCopright() {
 	// otherwise, set the text
 	copyright.innerText =
 		config.copyright.holder + " - " + config.copyright.year
+}
+
+function setUsernameType() {
+	if(!config.usernameType || !usernameInput || !usernameLabel)
+		return
+
+	let type = config.usernameType
+	// force to all lowercase and remove - if set to e-mail
+	type = type.toLowerCase().replace("-", "")
+
+	if (type === "email") {
+		usernameLabel.innerText = "Email Address"
+		usernameInput.type = "email"
+	}
 }
