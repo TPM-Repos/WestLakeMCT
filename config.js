@@ -2,7 +2,7 @@
 // Version 1.2.1
 
 const config = {
-	version: "1.2.2",
+	version: "1.2.4",
 	// the full path the site running the DriveWorks Live API
 	// serverUrl: "https://dw21.api.yourdomain.com",
 	serverUrl: "",
@@ -55,11 +55,6 @@ const config = {
 		requireNewSession: true,
 		requireExactAlias: false,
 	},
-	guestLogin: {
-		enabled: true,
-		username: "Guest",
-		password: "",
-	},
 	copyright: {
 		show: true,
 		holder: "TPM",
@@ -67,7 +62,7 @@ const config = {
 	},
 	// Add a watermark over pages in order to indicate that the site is a development site
 	// comment out or set to "" to disable
-	watermark: "Development Site",
+	watermark: "Development",
 	// Set the title of the site, this will be displayed in the browser tab
 	// pageName | siteName
 	siteName: "TPM",
@@ -84,10 +79,15 @@ const config = {
 	// Whether to show debugging information in the console
 	debug: false,
 	allowSingleSignOn: false,
+	guestLogin: {
+		enabled: true,
+		alias: "Corporate Guest",
+	},
 	accountManagement: {
-		allowForgotPassword: false,
-		allowChangePassword: false,
-		allowCreateAccount: false,
+		createAccount: "query?DWConstantForm=CreateAccount",
+		forgotPassword: "query?DWConstantForm=ForgotPassword",
+		resetPassword:
+			"run.html?project=AccountManagement&DWConstantForm=ResetPassword",
 	},
 	sidebarLinks: [
 		{
@@ -95,21 +95,16 @@ const config = {
 			icon: "projects",
 			href: "projects.html",
 		},
-		{
-			title: "DriveApps",
-			icon: "drive-apps",
-			href: "drive-apps.html",
-		},
+		// {
+		// 	title: "DriveApps",
+		// 	icon: "drive-apps",
+		// 	href: "drive-apps.html",
+		// },
 		{
 			title: "History",
 			icon: "history",
 			href: "history.html",
 		},
-		// {
-		//     title: "Reset Password",
-		//     icon: "reset",
-		//     href: "query?DWConstantForm=PasswordReset",
-		// },
 	],
 	images: {
 		// You may use a different (or same) company logo for the login and sidebar
@@ -126,7 +121,7 @@ const config = {
 		// These will fade into the next image every 'interval' seconds
 		// You may use as many as you want but the more you use the longer the page will take to load
 		carousel: {
-			enabled: false,
+			enabled: true,
 			interval: 7.5,
 			images: [
 				"dist/img/carousel-1.jpg",

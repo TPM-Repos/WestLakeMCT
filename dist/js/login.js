@@ -5,7 +5,7 @@
 
 const SERVER_URL = config.serverUrl
 const LOGIN_REDIRECT_URL = config.login.redirectUrl
-const GROUP_ALIAS = config.groupAlias
+let GROUP_ALIAS = config.groupAlias
 const URL_QUERY = new URLSearchParams(window.location.search)
 
 // Elements
@@ -44,7 +44,7 @@ let client;
 	}
 
 	if (loginGuest) {
-		if (config.allowGuestLogin) {
+		if (config.guestLogin.enabled) {
 			loginGuest.addEventListener("click", handleGuestLogin)
 		} else {
 			loginGuest.style.display = "none"
@@ -107,11 +107,7 @@ function startPageFunctions() {
 	}
 }
 
-async function login(type, event = null) {
-	if (event) {
-		event.preventDefault()
-	}
-
+async function login(type) {
 	// Show error if cannot connect to client
 	if (!client) {
 		loginError(clientErrorMessage)
@@ -123,10 +119,12 @@ async function login(type, event = null) {
 		loginButton.classList.add("is-loading")
 		hideLoginNotice()
 
+		let result = null
+		let inputUsername = null
 		// Start Session
 		if (type === "default" || type === null || type === "") {
 			// Get credentials
-			const inputUsername =
+			inputUsername =
 				document.getElementById("login-username").value
 			const inputPassword =
 				document.getElementById("login-password").value
@@ -134,11 +132,17 @@ async function login(type, event = null) {
 				username: inputUsername,
 				password: inputPassword,
 			}
-			const result = await client.loginGroup(GROUP_ALIAS, userCredentials)
+			result = await client.loginGroup(GROUP_ALIAS, userCredentials)
 		} else if (type === "SSO") {
-			const result = await client.loginSSO(GROUP_ALIAS)
+			result = await client.loginSSO(GROUP_ALIAS)
 		} else if (type === "Guest") {
-			await client.loginGroup(GROUP_ALIAS)
+			if (config.guestLogin.alias && config.guestLogin.alias !== "") {
+				GROUP_ALIAS = config.guestLogin.alias
+				console.log(GROUP_ALIAS)
+			}
+			inputUsername = "Guest"
+
+			result = await client.loginGroup(GROUP_ALIAS)
 		}
 
 		// Show error is login failed
@@ -154,6 +158,7 @@ async function login(type, event = null) {
 }
 
 function handleLoginForm(event) {
+	event.preventDefault()
 	login("default", event)
 }
 
