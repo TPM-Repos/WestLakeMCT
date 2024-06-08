@@ -299,7 +299,7 @@ function ensureDateTimeUTC(dateTime) {
         2024-03-08T00:19:33.517-05:00
         The time is UTC, but the timezone is that of the server, so the time is incorrect.
         Our goal is to strip the timezone offset (-05:00) from the end of the string and replace it with Z
-        Z is the denotation for Zulu, meaning UTC+0, or Greenich mean time
+        Z is the denotation for Zulu, meaning UTC+0, or Greenwich mean time
         the end of the string will have a timezone in it with either a + or -
         For example
             2024-03-08T00:19:33.517-05:00 or 2024-03-08T00:19:33.517+12:30

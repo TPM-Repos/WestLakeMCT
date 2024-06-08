@@ -138,9 +138,9 @@ const config = {
 	// Available fonts are Roboto (Flex), Inter, and Poppins
 	// you may @import any additional fonts you require in dist/css/theme/theme.css: for more info: https://www.w3schools.com/css/css3_fonts.asp
 	// Sizes can be various units (%, pt, px, em, rem, vh, vw, etc): for more info: https://www.w3schools.com/css/css_units.asp
-	// dont use % with radius
-	// Colors can be names, hexidecimal, rgb(a), hsl(a): for more info: https://www.w3schools.com/cssref/css_colors_legal.php
-	// line height can be px, pt, or unitless. unitless is * font size
+	// don't use % with radius
+	// Colors can be names, hexadecimal, rgb(a), hsl(a): for more info: https://www.w3schools.com/cssref/css_colors_legal.php
+	// line height can be px, pt, or unit-less. unit-less is * font size
 	styles: {
         text: {
             font: "Poppins",

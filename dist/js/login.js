@@ -67,7 +67,7 @@ let client;
 	}
 	showLoginNotice()
 	setLoginColumnLocation()
-	setCopright()
+	setCopyright()
 })()
 
 /**
@@ -436,7 +436,7 @@ function transitionImages() {
 }
 
 // function to set the copyright information
-function setCopright() {
+function setCopyright() {
 	if (!copyright || !config.copyright.show) {
 		// nothing to do if the copyright div can't be found
 		// or if the config.copyright.show doesn't exist
