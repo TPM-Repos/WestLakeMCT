@@ -1,4 +1,4 @@
-/* Version 1.2.0 */
+/* Version 1.2.6 */
 /**
 * HISTORY
 */
@@ -49,10 +49,10 @@ button {
 	align-items: center;
 	text-align: left;
 	background-color: rgba(0, 0, 0, 0.15);
-	color: var(--accent-dark);
+	color: var(--color-primary);
 	padding: 0.5em 1em;
 	margin: 0.5em 0.5em 0 0;
-	border-radius: 100em;
+	border-radius: var(--button-radius, 100em);
 	font-weight: 600;
 	white-space: nowrap;
 	transition: background-color 0.3s ease, filter 0.3s ease;
@@ -84,7 +84,7 @@ button {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	color: var(--accent-dark);
+	color: var(--color-primary);
 	margin: -0.5em 0 0 -0.5em;
 	animation: spin 0.75s linear infinite;
 }
@@ -113,7 +113,7 @@ button {
 	width: 100%;
 	padding: 0.75em 3em 0.75em 2.75em;
 	margin: 0;
-	border-radius: var(--global-radius);
+	border-radius: var(--inputRadius);
 	border: 2px solid #ddd;
 	box-shadow: none;
 	-webkit-appearance: none;
@@ -197,7 +197,7 @@ button {
 .history-item {
 	position: relative;
 	background-color: #fff;
-	border-radius: var(--global-radius);
+	border-radius: var(--inputRadius);
 	box-shadow: var(--shadow-light);
 	margin-bottom: 0.75em;
 	opacity: 0;
@@ -221,7 +221,7 @@ button {
 	color: #000;
 	padding: 0.5em;
 	margin: 0;
-	border-radius: var(--global-radius);
+	border-radius: var(--inputRadius);
 	text-decoration: none;
 	transition: background-color 0.3s ease;
 }
@@ -266,7 +266,7 @@ button {
 	font-size: 1.25em;
 	font-weight: 600;
 	line-height: 1.2;
-	color: var(--accent-dark);
+	color: var(--color-primary);
 	text-decoration: none;
 	word-wrap: break-word;
 }
@@ -291,9 +291,9 @@ button {
 .history-item .view-action {
 	display: inline-flex;
 	justify-content: center;
-	border-radius: 100em;
+	border-radius: var(--button-radius, 100em);
 	background-color: rgba(0, 0, 0, 0.1);
-	color: var(--accent-dark);
+	color: var(--color-primary);
 	padding: 0.75em 1.5em;
 	margin-left: auto;
 	font-weight: 600;
@@ -372,7 +372,7 @@ button {
 }
 
 .history-item.is-expanded .item-details {
-	border-radius: var(--global-radius) var(--global-radius) 0 0;
+	border-radius: var(--inputRadius) var(--inputRadius) 0 0;
 }
 .history-item.is-expanded .item-details::after {
 	border-radius: 0.5em 0.5em 0 0;

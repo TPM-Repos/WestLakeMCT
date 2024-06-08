@@ -1,4 +1,4 @@
-/* Version 1.2.0 */
+/* Version 1.2.6 */
 /**
 * LOGIN
 */
@@ -10,7 +10,10 @@
 /* Defaults */
 label {
 	display: block;
-	font-weight: 600;
+	font-family: var(--caption-font);
+	font-size: var(--caption-size);
+	color: var(--caption-color);
+	font-weight: var(--caption-weight);
 }
 
 input {
@@ -18,7 +21,7 @@ input {
 	width: 100%;
 	padding: 1em;
 	margin-bottom: 1em;
-	border-radius: var(--global-radius);
+	border-radius: var(--inputRadius);
 	border: 2px solid #ddd;
 	box-shadow: none;
 	transition: border 0.2s ease;
@@ -28,14 +31,14 @@ input {
 
 input:focus {
 	outline: none;
-	border-color: var(--color-neutral);
+	border-color: var(--color-primary);
 }
 
 button {
 	padding: 1rem 1.25rem;
-	border-radius: 100em;
+	border-radius: var(--button-radius, 100em);
 	border: none;
-	background-color: var(--color-neutral);
+	background-color: var(--button-color, --color-neutral, #4299e1);
 	color: #fff;
 	text-align: center;
 	font-weight: 600;
@@ -71,7 +74,7 @@ button:disabled {
 	width: 100%;
 	padding: 2.5em 2em 1.5em;
 	text-align: center;
-	background-color: #fff;
+	background-color: var(--loginForm-background, #fff);
 	box-shadow: var(--shadow-light);
 }
 
@@ -95,7 +98,7 @@ button:disabled {
 	margin: 0 auto;
 	background-color: var(--color-neutral);
 	color: #fff;
-	border-radius: var(--global-radius);
+	border-radius: var(--inputRadius);
 }
 
 .login-notice.is-shown {
@@ -115,9 +118,9 @@ button:disabled {
 }
 
 .login-logo img {
-	width: 100%;
+	width: var(--logo-width);
 	height: auto;
-	max-width: 200px;
+	max-width: 100%;
 }
 
 .login-title {
@@ -143,7 +146,7 @@ button:disabled {
 
 .password-input {
 	position: relative;
-	margin-bottom: .5rem;
+	margin-bottom: 1em;
 }
 
 .password-input input {
@@ -246,7 +249,7 @@ button:disabled {
 	.login-form {
 		width: 35%;
 		min-width: 30em;
-		padding: 4em 4em 2em;
+		padding: var(--loginForm-padding, 4em 4em 2em);
 	}
 
 	.login-cover {

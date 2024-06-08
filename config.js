@@ -1,8 +1,8 @@
 // COPY THIS FILE TO 'configUser.js' AND UPDATE THE VALUES TO MATCH YOUR SERVER URL & GROUP ALIAS
-// Version 1.2.1
+// Version 1.2.6
 
 const config = {
-	version: "1.2.5",
+	version: "1.2.6",
 	// the full path the site running the DriveWorks Live API
 	// serverUrl: "https://dw21.api.yourdomain.com",
 	serverUrl: "",
@@ -134,4 +134,63 @@ const config = {
 			],
 		},
 	},
+	// Use this section to easily set the branding of your site.
+	// Available fonts are Roboto (Flex), Inter, and Poppins
+	// you may @import any additional fonts you require in dist/css/theme/theme.css: for more info: https://www.w3schools.com/css/css3_fonts.asp
+	// Sizes can be various units (%, pt, px, em, rem, vh, vw, etc): for more info: https://www.w3schools.com/css/css_units.asp
+	// dont use % with radius
+	// Colors can be names, hexidecimal, rgb(a), hsl(a): for more info: https://www.w3schools.com/cssref/css_colors_legal.php
+	// line height can be px, pt, or unitless. unitless is * font size
+	styles: {
+        text: {
+            font: "Poppins",
+            size: "12pt",
+            color: "black",
+            lineHeight: "1.8",
+        },
+        heading: {
+            font: "Inter",
+            size: "48pt",
+            color: "black",
+            weight: "bold",
+            lineHeight: "1.2",
+        },
+        caption: {
+            font: "Roboto",
+            size: "12pt",
+            color: "black",
+            weight: "light",
+        },
+        color: {
+            primary: "#000000",
+            secondary: "#00AEEF",
+            background: "white",
+            icon: "#00AEEF",
+            focus: "#00AEEF",
+        },
+        sidebar: {
+            background: "#292929",
+            width: "18em",
+            logoPadding: "1em",
+			textColor: "white",
+        },
+        loginForm: {
+            background: "white",
+            padding: "1em",
+        },
+        button: {
+			// not recommended to use %
+            radius: "2rem",
+            color: "#00AEEF",
+        },
+        logo: {
+            width: "50%"
+        },
+        projectCard: {
+            background: "#efeeed",
+            margin: "22px",
+        },
+		// not recommended to use %
+        inputRadius: "10pt",
+    },
 }
