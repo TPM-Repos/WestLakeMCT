@@ -85,17 +85,15 @@
 						</button>
 					</div>
 
-					<a
-						id="forgot-link"
-						href="query?DWConstantForm=ForgotPassword"
-					>
+					<a id="forgot-link" class="hidden">
 						Forgot Password?
 					</a>
 
 					<button
 						type="submit"
 						id="login-button"
-						class="login-button"
+						class="login-button skeleton-block"
+						disabled
 					>
 						Login
 						<svg class="icon">
@@ -103,26 +101,32 @@
 						</svg>
 					</button>
 
-					<a
-						id="create-link"
-						href="query?DWConstantForm=CreateAccount"
-					>
-						Create Account
-					</a>
-
 					<button
 						type="button"
 						id="login-sso-button"
-						class="login-button"
+						class="login-button skeleton-block hidden"
+						disabled
 					>
 						Login with SSO
 					</button>
 					<button
 						type="button"
 						id="login-guest-button"
-						class="login-button"
+						class="login-button hidden"
+						disabled
 					>
 						Login as Guest
+					</button>
+
+					<div class="login-divider hidden">or</div>
+
+					<button
+						type="button"
+						id="create-account-button"
+						class="login-button hidden"
+						disabled
+					>
+						Create Account
 					</button>
 				</div>
 

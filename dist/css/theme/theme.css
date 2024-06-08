@@ -468,6 +468,10 @@ button.nav-overlay:focus {
 	animation: loading-skeleton 2s infinite linear;
 }
 
+.login-details .skeleton-block {
+	height: unset;
+}
+
 .watermark {
 	position: absolute;
 	bottom: 8%;
@@ -490,6 +494,18 @@ button.nav-overlay:focus {
 	bottom: 0;
 	width: 50px;
 	height: unset;
+}
+
+#reset-password {
+	padding: 5px;
+	margin: 0 auto 1em;
+	text-align: center;
+	text-decoration-line: underline;
+	opacity: .6;
+}
+
+#login-guest-button {
+	
 }
 
 /* Loading dots */

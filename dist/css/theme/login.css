@@ -51,8 +51,13 @@ button:hover {
 }
 
 button:disabled {
-	opacity: 0.25;
-	pointer-events: none;
+	background-color: #8d8d8d;
+	/* pointer-events: none; */
+	cursor: not-allowed;
+}
+
+button:disabled:hover {
+	filter: none;
 }
 
 /* Form */
@@ -214,6 +219,12 @@ button:disabled {
 
 .login-button.is-loading svg {
 	display: block;
+}
+
+.pill {
+	background-color: transparent;
+	border: solid 2px var(--button-color, black);
+	color: var(--color-primary);
 }
 
 .login-divider {

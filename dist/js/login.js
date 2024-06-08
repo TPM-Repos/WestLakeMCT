@@ -7,6 +7,7 @@ const SERVER_URL = config.serverUrl
 const LOGIN_REDIRECT_URL = config.login.redirectUrl
 let GROUP_ALIAS = config.groupAlias
 const URL_QUERY = new URLSearchParams(window.location.search)
+const delay = ms => new Promise(res => setTimeout(res, ms));
 
 // Elements
 const loginForm = document.getElementById("login-form")
@@ -15,10 +16,11 @@ const loginGuest = document.getElementById("login-guest-button")
 const loginSSOButton = document.getElementById("login-sso-button")
 const loginNotice = document.getElementById("login-notice")
 const forgotLink = document.getElementById("forgot-link")
-const createLink = document.getElementById("create-link")
+const createAccountButton = document.getElementById("create-account-button")
 const copyright = document.querySelector(".login-copyright")
 const usernameLabel = document.querySelector("#username-label")
 const usernameInput = document.querySelector("#login-username")
+const loginDivider = document.querySelector(".login-divider")
 
 // Error Messages
 const genericErrorMessage = "There has been an issue."
@@ -32,6 +34,13 @@ let client;
 	 * On page load.
 	 */
 (async function () {
+	// Check localStorage support (show warning if not e.g. <= iOS 10 Private Window)
+	if (!localStorageSupported()) {
+		removeSkeleton()
+		loginError(privateErrorMessage)
+		return
+	}
+
 	setUsernameType()
 	setLoginCover()
 	addCarouselImages()
@@ -41,33 +50,41 @@ let client;
 	if (loginSSOButton) {
 		if (config.allowSingleSignOn) {
 			loginSSOButton.addEventListener("click", handleLoginSSO)
-		} else {
-			loginSSOButton.style.display = "none"
+			loginSSOButton.classList.remove("hidden")
+			loginSSOButton.classList.add("skeleton-block")
 		}
 	}
 
 	if (loginGuest) {
 		if (config.guestLogin.enabled) {
 			loginGuest.addEventListener("click", handleGuestLogin)
-		} else {
-			loginGuest.style.display = "none"
+			loginGuest.classList.remove("hidden")
+			loginGuest.classList.add("skeleton-block")
 		}
 	}
 
 	if (forgotLink) {
-		if (!config.accountManagement.allowForgotPassword) {
-			forgotLink.style.display = "none"
+		if (config.accountManagement.forgotPassword) {
+			forgotLink.href = config.accountManagement.forgotPassword
+			forgotLink.classList.remove("hidden")
 		}
 	}
 
-	if (createLink) {
-		if (!config.accountManagement.allowCreateAccount) {
-			createLink.style.display = "none"
+	if (createAccountButton) {
+		if (config.accountManagement.createAccount) {
+			createAccountButton.addEventListener("click", createAccount)
+			createAccountButton.classList.remove("hidden")
+			loginDivider.classList.remove("hidden")
+			createAccountButton.classList.add("skeleton-block")
 		}
 	}
 	showLoginNotice()
 	setLoginColumnLocation()
 	setCopyright()
+	handlePasswordToggle()
+	// how long until timing out trying to connect?
+	await delay(5000)
+	removeSkeleton()
 })()
 
 /**
@@ -78,6 +95,7 @@ async function dwClientLoaded() {
 		client = new window.DriveWorksLiveClient(SERVER_URL)
 	} catch (error) {
 		loginError(clientErrorMessage, error)
+		removeSkeleton()
 	}
 
 	// Quick Logout (?bye)
@@ -86,28 +104,25 @@ async function dwClientLoaded() {
 		await forceLogout()
 	}
 
-	startPageFunctions()
+	if(client == null) {
+		dwClientLoadError()
+	} else {
+		startPageFunctions()
+	}
+
 }
 
 /**
  * Start page functions.
  */
 function startPageFunctions() {
-	handlePasswordToggle()
-
-	// Check localStorage support (show warning if not e.g. <= iOS 10 Private Window)
-	if (!localStorageSupported()) {
-		document.getElementById("login-button").disabled = true
-		loginError(privateErrorMessage)
-		return
-	}
-
 	try {
 		// Check if logged in, and redirect
 		checkExistingLogin()
 	} catch (error) {
 		handleGenericError(error)
 	}
+	removeSkeleton()
 }
 
 async function login(type) {
@@ -171,6 +186,25 @@ function handleGuestLogin() {
 
 function handleLoginSSO() {
 	login("SSO")
+}
+
+function createAccount() {
+	window.location.href = `${window.location.origin}/${config.accountManagement.createAccount}`
+}
+
+function removeSkeleton() {
+	loginButton.classList.remove("skeleton-block")
+	loginSSOButton.classList.remove("skeleton-block")
+	loginGuest.classList.remove("skeleton-block")
+	createAccountButton.classList.remove("skeleton-block")
+}
+
+function enableButtons() {
+	loginButton.disabled = false
+	loginSSOButton.disabled = false
+	loginGuest.disabled = false
+	createAccountButton.disable = false
+	createAccountButton.classList.add("pill")
 }
 
 /**
@@ -461,4 +495,12 @@ function setUsernameType() {
 		usernameLabel.innerText = "Email Address"
 		usernameInput.type = "email"
 	}
+}
+
+/**
+ * DriveWorks Live client library load error.
+ */
+function dwClientLoadError() {
+	loginError(clientErrorMessage)
+	removeSkeleton()
 }
