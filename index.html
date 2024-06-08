@@ -1,4 +1,4 @@
-<!-- Version 1.2.7 -->
+<!-- Version 1.2.8 -->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -7,6 +7,11 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 
 		<title>Login</title>
+
+		<!-- Scripts -->
+		<script src="configUser.js" async></script>
+		<script src="dist/js/login.js" defer></script>
+		<script src="dist/js/ui.js" defer></script>
 
 		<!-- Core Styles -->
 		<link rel="stylesheet" type="text/css" href="dist/css/core.css" />
@@ -47,7 +52,9 @@
 				<div id="login-notice" class="login-notice"></div>
 
 				<div class="login-details">
-					<label for="login-username" id="username-label"> Username </label>
+					<label for="login-username" id="username-label">
+						Username
+					</label>
 					<input
 						type="text"
 						id="login-username"
@@ -123,11 +130,6 @@
 
 			<div class="login-cover"></div>
 		</div>
-
-		<!-- Scripts -->
-		<script src="configUser.js"></script>
-		<script src="dist/js/login.js"></script>
-		<script src="dist/js/ui.js"></script>
 
 		<!-- Option A) Directly load Client Library -->
 		<!-- <script src="https://YOUR-DRIVEWORKS-LIVE-SERVER-URL.COM/DriveworksLiveIntegrationClient.min.js" onload="dwClientLoaded()"></script> -->
