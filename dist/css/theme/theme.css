@@ -1,27 +1,7 @@
-/* Version 1.2.6 */
+/* Version 1.2.7 */
 /**
 * GLOBAL THEME
 */
-@font-face {
-	font-family: 'Roboto';
-	src: url('../../fonts/Roboto/RobotoFlex.woff2') format('woff2-variations');
-	font-weight: 100 900;
-	font-stretch: 75% 125%;
-  }
-  
-  @font-face {
-	font-family: 'Poppins';
-	src: url('../../fonts/Poppins/PoppinsVariable.woff2') format('woff2-variations');
-	font-weight: 100 900;
-	font-stretch: 75% 125%;
-  }
-  
-  @font-face {
-	font-family: 'Inter';
-	src: url('../../fonts/Inter/InterVariable.woff2') format('woff2-variations');
-	font-weight: 100 900;
-	font-stretch: 75% 125%;
-  }
 
 :root {
 	--row-width: 95em;
