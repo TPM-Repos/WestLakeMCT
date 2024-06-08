@@ -1,7 +1,27 @@
-/* Version 1.2.0 */
+/* Version 1.2.6 */
 /**
 * GLOBAL THEME
 */
+@font-face {
+	font-family: 'Roboto';
+	src: url('../../fonts/Roboto/RobotoFlex.woff2') format('woff2-variations');
+	font-weight: 100 900;
+	font-stretch: 75% 125%;
+  }
+  
+  @font-face {
+	font-family: 'Poppins';
+	src: url('../../fonts/Poppins/PoppinsVariable.woff2') format('woff2-variations');
+	font-weight: 100 900;
+	font-stretch: 75% 125%;
+  }
+  
+  @font-face {
+	font-family: 'Inter';
+	src: url('../../fonts/Inter/InterVariable.woff2') format('woff2-variations');
+	font-weight: 100 900;
+	font-stretch: 75% 125%;
+  }
 
 :root {
 	--row-width: 95em;
@@ -24,18 +44,18 @@
 
 	--accent-primary: #0053a0;
 	--accent-secondary: #e2383f;
-	--accent-dark: #3d4b60;
+	--color-primary: #3d4b60;
 
-	--global-radius: 0.5em;
+	--inputRadius: 0.5em;
 	--shadow-light: 0 0.25em 0.5em rgba(0, 0, 0, 0.1);
 }
 
 body {
-	background: #eee;
-	color: var(--accent-dark);
-	font-size: 16px;
-	line-height: 1.4;
-	font-family: "Open Sans", Arial, sans-serif;
+	background: var(--color-background, #eee);
+	color: var(--text-color);
+	font-size: var(--text-size, 16px);
+	line-height: var(--text-lineHeight, 1.4);
+	font-family: var(--text-font, "Open Sans", Arial, sans-serif);
 }
 
 button,
@@ -57,12 +77,16 @@ h2,
 h3,
 h4,
 h5 {
-	color: var(--accent-dark);
+	color: var(--heading-color);
+	font-size: var(--heading-size, 16px);
+	font-family: var(--heading-font, "Open Sans", Arial, sans-serif);
+	font-weight: var(--heading-weight, bold);
+	line-height: var(--heading-lineHeight);
 	margin: 0 0 0.5em;
 }
 
 p {
-	color: var(--accent-dark);
+	color: var(--color-primary);
 	margin-bottom: 1em;
 	line-height: 1.5;
 }
@@ -85,8 +109,8 @@ hr {
 	left: 0;
 	z-index: 200;
 	width: 100%;
-	background-color: var(--accent-dark);
-	color: #fff;
+	background-color: var(--sidebar-background);
+	color: var(--sidebar-textColor, black);
 }
 
 .content-nav .logo {
@@ -107,7 +131,7 @@ hr {
 	text-align: center;
 	cursor: pointer;
 	border: none;
-	border-radius: 100em;
+	border-radius: var(--button-radius, 100em);
 	font-weight: 600;
 	transition: background-color 0.3s ease, filter 0.3s ease;
 }
@@ -120,7 +144,7 @@ hr {
 	width: 15em;
 	height: 100vh;
 	overflow-y: auto;
-	background: #515d70;
+	background: var(--sidebar-background, #515d70);
 	transform: translate3d(100%, 0, 0);
 	transition: transform 0.3s ease;
 	padding-top: 1em;
@@ -135,7 +159,7 @@ hr {
 .content-nav a {
 	position: relative;
 	padding: 1em 1.5em;
-	color: #fff;
+	color: var(--sidebar-textColor, black);
 	text-decoration: none;
 	font-size: 1.25em;
 	transition: background-color 0.3s ease, color 0.3s ease;
@@ -183,11 +207,11 @@ hr {
 	width: 1em;
 	height: 1em;
 	margin-right: 1em;
-	opacity: 0.15;
+	/* opacity: .15; */
 }
 
 .content-nav li a.is-current {
-	border-left: 4px solid var(--color-neutral);
+	border-left: 4px solid var(--color-focus, --color-neutral);
 }
 
 /* Form Running Actions (Actions/Transforms/Operations) */
@@ -309,7 +333,7 @@ button.nav-overlay:focus {
 	}
 
 	.content-wrap .content-nav .logo {
-		padding: 3em 1.5em 2em;
+		padding: var(--sidebar-logoPadding, 3em 1.5em 2em);
 	}
 
 	.content-wrap .content-nav .logo svg {
@@ -346,7 +370,7 @@ button.nav-overlay:focus {
 /* Status Tags */
 .status-tag {
 	background-color: #ddd;
-	color: var(--accent-dark);
+	color: var(--color-primary);
 }
 
 .status-tag.status-save,
@@ -440,7 +464,7 @@ button.nav-overlay:focus {
 	position: relative;
 	overflow: hidden;
 	background: rgba(0, 0, 0, 0.05);
-	border-radius: var(--global-radius);
+	border-radius: var(--inputRadius);
 	height: 10em;
 	/* Default height */
 }
@@ -466,7 +490,7 @@ button.nav-overlay:focus {
 
 .watermark {
 	position: absolute;
-	top: 0;
+	bottom: 8%;
 	left: 0;
 	right: 0;
 	height: 50px;

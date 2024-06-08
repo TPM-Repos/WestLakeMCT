@@ -1,4 +1,4 @@
-/* Version 1.2.0 */
+/* Version 1.2.6 */
 /**
 * BASIC IMAGE GALLERY
 */
@@ -71,7 +71,7 @@
 	display: block;
 	background-color: #fff;
 	padding: 0;
-	border-radius: var(--global-radius);
+	border-radius: var(--inputRadius);
 	box-shadow: var(--shadow-light);
 	overflow: hidden;
 	width: 14em;

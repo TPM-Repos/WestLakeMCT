@@ -1,10 +1,11 @@
-// Version 1.2.2
+// Version 1.2.6
 // The purpose of this file is UI tweaks that should be run on all pages.
 // core.js only runs on pages the user is logged in to.
 
 const isLoginPage =
 	!window.location.pathname.includes(".html") ||
 	window.location.pathname.includes("index.html")
+const rs = document.querySelector(":root").style
 
 /**
  * Run on page load.
@@ -19,6 +20,7 @@ const isLoginPage =
 	setTitle()
 	setLogo()
 	setWatermark()
+	setStyles(config.styles)
 })()
 
 function setTitle() {
@@ -50,7 +52,7 @@ function setWatermark() {
 		watermark.classList.add("sideways")
 	}
 	watermark.innerHTML = config.watermark
-	contentInner.prepend(watermark)
+	contentInner.append(watermark)
 }
 
 function setLogo() {
@@ -65,4 +67,41 @@ function setLogo() {
 	} else if (config.images.sidebar) {
 		logo.src = config.images.sidebar
 	}
+}
+
+/**
+ *
+ * @param {object} styles Object with properties to be converted to CSS, can have nested objects
+ * @param {string} parentKey only used for recursion. the name of the nested object
+ * @returns {boolean} if styles were set
+ */
+function setStyles(styles, parentKey = "") {
+	if (!styles) {
+		return false
+	}
+
+	try {
+		for (const style in styles) {
+			if (styles.hasOwnProperty(style)) {
+				const key = parentKey ? `${parentKey}-${style}` : style
+
+				if (
+					typeof styles[style] === "object" &&
+					styles[style] !== null
+				) {
+					// Recursive call for nested objects
+					setStyles(styles[style], key)
+				} else {
+					// Set the CSS variable for non-object properties
+					document.documentElement.style.setProperty(
+						`--${key}`,
+						styles[style],
+					)
+				}
+			}
+		}
+	} catch {
+		return false
+	}
+	return true
 }

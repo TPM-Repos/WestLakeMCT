@@ -1,4 +1,4 @@
-/* Version 1.2.0 */
+/* Version 1.2.6 */
 @charset "UTF-8";
 
 /* Base */
@@ -24,7 +24,7 @@ svg.icon {
 	width: 1em;
 	height: 1em;
 	min-width: 1em;
-	fill: currentColor;
+	fill: var(--color-icon, currentColor);
 	overflow: visible;
 }
 
