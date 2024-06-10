@@ -1,4 +1,4 @@
-// Version 1.2.1
+// Version 1.2.9
 /**
  * LOGIN
  */
@@ -108,6 +108,7 @@ async function dwClientLoaded() {
 		dwClientLoadError()
 	} else {
 		startPageFunctions()
+		enableButtons()
 	}
 
 }
@@ -203,7 +204,7 @@ function enableButtons() {
 	loginButton.disabled = false
 	loginSSOButton.disabled = false
 	loginGuest.disabled = false
-	createAccountButton.disable = false
+	createAccountButton.disabled = false
 	createAccountButton.classList.add("pill")
 }
 
