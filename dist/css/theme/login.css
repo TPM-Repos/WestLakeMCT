@@ -79,7 +79,7 @@ button:disabled:hover {
 	width: 100%;
 	padding: 2.5em 2em 1.5em;
 	text-align: center;
-	background-color: var(--loginForm-background, #fff);
+	background: var(--loginForm-background, #fff);
 	box-shadow: var(--shadow-light);
 }
 
