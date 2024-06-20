@@ -492,7 +492,7 @@ function setUsernameType() {
 	// force to all lowercase and remove - if set to e-mail
 	type = type.toLowerCase().replace("-", "")
 
-	if (type === "email") {
+	if (type === "email address") {
 		usernameLabel.innerText = "Email Address"
 		usernameInput.type = "email"
 	}
