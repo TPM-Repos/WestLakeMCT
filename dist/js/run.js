@@ -1,4 +1,4 @@
-// Version 1.2.0
+// Version 1.2.9
 /**
  * RUNNING SPECIFICATION
  */
@@ -95,6 +95,8 @@ function startPageFunctions() {
 		createDriveAppSpecification()
 		return
 	}
+
+	
 }
 
 /**
@@ -215,6 +217,9 @@ async function renderNewSpecification(
 	// Start ping (keep Specification alive)
 	pingSpecification(specification)
 
+	// attach logout to particular buttons
+	attachLogoutButtons()
+
 	// [OPTIONAL] Show Specification Name in browser tab title
 	if (showSpecificationNameInTitle) {
 		setTabTitleSpecificationName(specification)
@@ -286,6 +291,9 @@ async function renderExistingSpecification() {
 
 		// Start ping (keep Specification alive)
 		pingSpecification(specification)
+
+		// attach logout to particular buttons
+		attachLogoutButtons()
 
 		// [OPTIONAL] Show Specification Name in browser tab title
 		setTabTitleSpecificationName(specification)
@@ -778,11 +786,6 @@ function existingSpecificationCancelled() {
  * Redirect On Close
  */
 function redirectOnSpecAction(action = "close") {
-	// if project is AccountManagement, then logout
-	if (QUERY_PROJECT_NAME === "AccountManagement") {
-		handleLogout()
-		return
-	}
 	if (action === "close") {
 		page = currentConfig.redirectOnClose
 	} else if (action === "cancel") {
@@ -990,4 +993,20 @@ function showConfirmationDialog(confirmAction, message = "Are you sure?") {
 	}
 
 	document.addEventListener("keydown", dismissEscKey)
+}
+
+/**
+ * Attach logout actions to macro buttons
+ */
+function attachLogoutButtons() {
+	const form_dom = document.querySelector("dw-form").shadowRoot
+	const logoutButtons = form_dom.querySelectorAll("[data-metadata*='logout']")
+	if (!logoutButtons) {
+		console.log("no buttons found")
+		return
+	}
+
+	for (const logoutButton of logoutButtons) {
+		logoutButton.addEventListener("click", handleLogout)
+	}
 }
