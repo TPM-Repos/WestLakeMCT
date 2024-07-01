@@ -25,10 +25,12 @@ version: "1.2.9",
 		redirectUrl: "index.html",
 	},
 	project: {
+		// you may put "logout" instead of a page location
 		redirectOnClose: "details.html",
 		redirectOnCancel: "projects.html",
 	},
 	driveApp: {
+		// you may put "logout" instead of a page location
 		redirectOnClose: "details.html",
 		redirectOnCancel: "drive-apps.html",
 	},

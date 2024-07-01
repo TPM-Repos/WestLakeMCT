@@ -791,7 +791,11 @@ function redirectOnSpecAction(action = "close") {
 	} else if (action === "cancel") {
 		page = currentConfig.redirectOnCancel
 	}
-	window.location.href = `${page}?specification=${rootSpecificationId}`
+	if(page === "logout") {
+		handleLogout()
+	} else {
+		window.location.href = `${page}?specification=${rootSpecificationId}`
+	}
 }
 
 /**
