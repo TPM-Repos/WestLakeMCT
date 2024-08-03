@@ -23,7 +23,7 @@ const usernameInput = document.querySelector("#login-username")
 const loginDivider = document.querySelector(".login-divider")
 
 // Error Messages
-const genericErrorMessage = "There has been an issue."
+const genericErrorMessage = "Unable to login."
 const clientErrorMessage = "Cannot access client."
 const privateErrorMessage = "Please use a non-private window."
 
