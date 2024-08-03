@@ -89,10 +89,10 @@ version: "1.2.9",
 		alias: "Corporate Guest",
 	},
 	accountManagement: {
-		createAccount: "query?DWConstantForm=CreateAccount",
-		forgotPassword: "query?DWConstantForm=ForgotPassword",
+		createAccount: "query?alias=TemplatesGuest&run=AccountManagement&DWMacroNavigate=CreateAccount",
+		forgotPassword: "query?alias=TemplatesGuest&run=AccountManagement&DWMacroNavigate=ForgotPassword",
 		resetPassword:
-			"run.html?project=AccountManagement&DWConstantForm=ResetPassword",
+			"query?alias=Templates&run=AccountManagement&DWMacroNavigate=ResetPassword",
 	},
 	sidebarLinks: [
 		{

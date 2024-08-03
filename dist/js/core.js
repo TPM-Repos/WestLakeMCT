@@ -8,7 +8,7 @@ const GROUP_ALIAS = localStorage.getItem("sessionAlias")
 const CURRENT_SESSION = localStorage.getItem("sessionId")
 
 // Elements
-const passwordReset = document.getElementById("password-reset")
+const passwordResetLink = document.getElementById("reset-password")
 
 let client
 
@@ -23,7 +23,7 @@ let client
 	detectTouchDevice()
 	setWatermark()
 	handleMobileNavigationToggle()
-	hidePasswordReset()
+	passwordReset()
 })()
 
 /**
@@ -360,11 +360,13 @@ function consoleDebug(...args) {
  * hide the password reset link if the feature is disabled
  * @return {void}
  */
-function hidePasswordReset() {
-	if (!passwordReset) {
+function passwordReset() {
+	if (!passwordResetLink) {
 		return
 	}
 	if (!config.accountManagement.allowChangePassword) {
-		passwordReset.style.display = "none"
+		passwordResetLink.style.display = "none"
+	} else {
+		passwordResetLink.href = config.accountManagement.resetPassword
 	}
 }
