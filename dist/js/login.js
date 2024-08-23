@@ -4,7 +4,7 @@
  */
 
 const SERVER_URL = config.serverUrl
-const LOGIN_REDIRECT_URL = config.login.redirectUrl
+let LOGIN_REDIRECT_URL = config.login.redirectUrl
 let GROUP_ALIAS = config.groupAlias
 const URL_QUERY = new URLSearchParams(window.location.search)
 const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -229,7 +229,10 @@ function loginSuccess(result, username) {
 		)}`
 		return
 	}
-	// 
+	
+	if (config.login.redirectGuestUrl && config.guestLogin.enabled && config.guestLogin.alias) {
+		LOGIN_REDIRECT_URL = (storedGroupAlias === config.guestLogin.alias)? config.login.redirectGuestUrl : config.login.redirectUrl
+	}
 
 	// Redirect to default location
 	window.location.href = LOGIN_REDIRECT_URL
@@ -328,6 +331,10 @@ async function checkExistingLogin() {
 
 	if (!storedGroupAlias) {
 		return
+	}
+
+	if (config.login.redirectGuestUrl && config.guestLogin.enabled && config.guestLogin.alias) {
+		LOGIN_REDIRECT_URL = (storedGroupAlias === config.guestLogin.alias)? config.login.redirectGuestUrl : config.login.redirectUrl
 	}
 
 	try {
@@ -506,3 +513,4 @@ function dwClientLoadError() {
 	loginError(clientErrorMessage)
 	removeSkeleton()
 }
+

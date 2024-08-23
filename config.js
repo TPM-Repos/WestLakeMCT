@@ -18,6 +18,8 @@ version: "1.2.9",
 	folder: "",
 	login: {
 		redirectUrl: "projects.html",
+		// set this if you want to redirect guest users to a different page
+		redirectGuestUrl: "projects.html",
 		// Set this to left, center, or right to position the login form on the page
 		columnLocation: "right",
 	},
