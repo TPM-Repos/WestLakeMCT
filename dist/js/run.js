@@ -95,8 +95,6 @@ function startPageFunctions() {
 		createDriveAppSpecification()
 		return
 	}
-
-	
 }
 
 /**
@@ -215,7 +213,7 @@ async function renderNewSpecification(
 	specification.registerSpecificationCancelledDelegate(() => formCancelled())
 
 	// Start ping (keep Specification alive)
-	pingSpecification(specification)
+	specification.enableAutoPing(SPECIFICATION_PING_INTERVAL)
 
 	// attach logout to particular buttons
 	attachLogoutButtons()
@@ -290,7 +288,7 @@ async function renderExistingSpecification() {
 		)
 
 		// Start ping (keep Specification alive)
-		pingSpecification(specification)
+		specification.enableAutoPing(SPECIFICATION_PING_INTERVAL)
 
 		// attach logout to particular buttons
 		attachLogoutButtons()
@@ -302,35 +300,6 @@ async function renderExistingSpecification() {
 		loadCustomProjectAssets()
 	} catch (error) {
 		renderError(existingError, error)
-	}
-}
-
-/**
- * Ping the running Specification.
- *
- * A Specification will timeout after a configured period of inactivity (see DriveWorksConfigUser.xml).
- * This function prevents a Specification timing out as long as the page is in view.
- *
- * @param {Object} specification - The Specification object.
- */
-function pingSpecification(specification) {
-	// Disable ping if interval is 0
-	if (SPECIFICATION_PING_INTERVAL === 0) {
-		return
-	}
-
-	try {
-		// Ping Specification to reset timeout
-		specification.ping()
-
-		// Schedule next ping
-		setTimeout(
-			pingSpecification,
-			SPECIFICATION_PING_INTERVAL * 1000,
-			specification,
-		)
-	} catch (error) {
-		handleGenericError(error)
 	}
 }
 
@@ -458,7 +427,7 @@ function attachSpecificationEvents(formElement) {
 	formElement.addEventListener("ActionsUpdated", async () => {
 		disableSpecificationActions()
 
-		// Ensure we have the latest Specification Id
+		// Ensure we have the latest Specification Id, as ActionsUpdated can fire before/separately to FormUpdated.
 		const formData = await client.getSpecificationFormData(
 			GROUP_ALIAS,
 			rootSpecificationId,
@@ -515,34 +484,31 @@ function registerFormButtons(specification) {
  * Render Specification Actions (Operations & Transitions).
  */
 async function renderSpecificationActions() {
-	// Get all Actions
+	// Get enabled Actions
 	const actions = await client.getSpecificationActions(
 		GROUP_ALIAS,
 		activeSpecificationId,
 	)
 
-	// Output Actions if: not stored (first run), objects don't match
-	if (!isEmpty(actions)) {
-		// Clear out old Actions
-		SPECIFICATION_ACTIONS.innerHTML = ""
+	// Clear out old Actions
+	SPECIFICATION_ACTIONS.innerHTML = ""
 
-		for (let actionIndex = 0; actionIndex < actions.length; actionIndex++) {
-			const action = actions[actionIndex]
-			const name = action.name
-			const title = action.title
-			const type = action.type
+	for (const action of actions) {
+		const action = actions[actionIndex]
+		const name = action.name
+		const title = action.title
+		const type = action.type
 
-			// Create button
-			const button = document.createElement("button")
-			button.classList.add("action-button")
-			button.innerHTML = title
+		// Create button
+		const button = document.createElement("button")
+		button.classList.add("action-button")
+		button.innerHTML = title
 
-			// Check type
-			if (type === "Operation") {
-				renderOperationAction(name, button)
-			} else {
-				renderTransitionAction(name, button)
-			}
+		// Check type
+		if (type === "Operation") {
+			renderOperationAction(name, button)
+		} else {
+			renderTransitionAction(name, button)
 		}
 	}
 
@@ -789,14 +755,18 @@ function redirectOnSpecAction(action = "close") {
 	const username = localStorage.getItem("sessionUsername")
 	const sessionAlias = localStorage.getItem("sessionAlias")
 	const isResetPassword = window.location.href.includes("ResetPassword")
-	if (username === "Guest" || sessionAlias === config.query.defaultGroupAlias || isResetPassword) {
+	if (
+		username === "Guest" ||
+		sessionAlias === config.query.defaultGroupAlias ||
+		isResetPassword
+	) {
 		page = "logout"
 	} else if (action === "close") {
 		page = currentConfig.redirectOnClose
 	} else if (action === "cancel") {
 		page = currentConfig.redirectOnCancel
 	}
-	if(page === "logout") {
+	if (page === "logout") {
 		handleLogout()
 	} else {
 		window.location.href = `${page}?specification=${rootSpecificationId}`
@@ -1019,3 +989,4 @@ function attachLogoutButtons() {
 		logoutButton.addEventListener("click", handleLogout)
 	}
 }
+
