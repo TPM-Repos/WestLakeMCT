@@ -485,8 +485,15 @@ function addCarouselImages() {
 
 // a function to transition the opacity of the images every X seconds
 function transitionImages() {
-	// remove the active class from the current image and add it to the next image
-	imageElements[currentIndex++].classList.remove("active");
+	// set the current image inactive
+	imageElements[currentIndex].classList.remove("active");
+	// roll over the current index if it's at the end of the array
+	if (currentIndex >= imageElements.length - 1) {
+		currentIndex = 0;
+	} else {
+		currentIndex++;
+	}
+	// set the current image as active
 	imageElements[currentIndex].classList.add("active");
 }
 
