@@ -11,6 +11,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 
 // Elements
 const loginForm = document.getElementById("login-form")
+const loginCover = document.querySelector(".login-cover")
 const loginButton = document.getElementById("login-button")
 const loginGuest = document.getElementById("login-guest-button")
 const loginSSOButton = document.getElementById("login-sso-button")
@@ -425,7 +426,6 @@ function setLoginColumnLocation() {
 
 	if (config.login.columnLocation === "center") {
 		const loginForm = loginContainer.querySelector("#login-form")
-		const loginCover = loginContainer.querySelector(".login-cover")
 		loginContainer.style.justifyContent = "center"
 		loginContainer.style.backgroundImage = config.images.loginCover
 
@@ -439,8 +439,6 @@ function addCarouselImages() {
 	if (!config.images.carousel || config.images.carousel.enabled === false) {
 		return
 	}
-
-	const loginCover = document.querySelector(".login-cover")
 
 	config.images.carousel.images.forEach((image) => {
 		const img = document.createElement("img")
