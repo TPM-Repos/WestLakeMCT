@@ -3,8 +3,8 @@
  * SPECIFICATION HISTORY
  */
 
-const defaultLimit = 10
-const defaultDateOrder = "desc"
+const defaultLimit = config.history.specLimitOnPage
+const defaultDateOrder = config.history.dateOrder
 let renderedProperties = []
 
 const storageKeyName = "historyFilterName"

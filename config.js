@@ -27,6 +27,10 @@ version: "1.2.9",
 	logout: {
 		redirectUrl: "index.html",
 	},
+	history: {
+		specLimitOnPage: 10,
+		dateOrder: "desc",
+	},
 	project: {
 		// you may put "logout" instead of a page location
 		redirectOnClose: "details.html",
