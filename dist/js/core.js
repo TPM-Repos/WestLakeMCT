@@ -7,6 +7,15 @@ const SERVER_URL = config.serverUrl
 const GROUP_ALIAS = localStorage.getItem("sessionAlias")
 const CURRENT_SESSION = localStorage.getItem("sessionId")
 
+// Account Management
+const AM_GUEST_ALIAS = config.accountManagement?.guestAlias || config.guestAlias
+const AM_PROJECT_NAME = config.accountManagement?.projectName || "AccountManagement"
+const AM_QUERY_STRING = `query?alias=${AM_GUEST_ALIAS}&run=${AM_PROJECT_NAME}&DWMacroNavigate=`
+const CREATE_ACCOUNT_URL = AM_QUERY_STRING + (typeof config.accountManagement?.createAccount === 'string' ? config.accountManagement.createAccount : "CreateAccount");
+const FORGOT_PASSWORD_URL = AM_QUERY_STRING + (typeof config.accountManagement?.forgotPassword === 'string' ? config.accountManagement.forgotPassword : "ForgotPassword");
+const RESET_PASSWORD_URL = AM_QUERY_STRING + (typeof config.accountManagement?.resetPassword === 'string' ? config.accountManagement.resetPassword : "ResetPassword");
+
+
 // Elements
 const passwordResetLink = document.getElementById("reset-password")
 
@@ -388,7 +397,7 @@ function passwordReset() {
 		// or if the user is a guest
 		passwordResetLink.style.display = "none"
 	} else {
-		passwordResetLink.href = config.accountManagement.resetPassword
+		passwordResetLink.href = RESET_PASSWORD_URL
 	}
 }
 
