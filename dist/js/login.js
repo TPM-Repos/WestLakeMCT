@@ -84,6 +84,13 @@ let client;
 		}
 	}
 
+	if (loginButton) {
+		if (config.disableRegularLogin) {
+			loginButton.classList.add("hidden")
+		}
+	}
+
+
 	if (createAccountButton) {
 		if (config.accountManagement.createAccount) {
 			createAccountButton.addEventListener("click", createAccount)
@@ -540,4 +547,3 @@ function dwClientLoadError() {
 	loginError(clientErrorMessage)
 	removeSkeleton()
 }
-
