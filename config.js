@@ -9,6 +9,7 @@ version: "1.2.9",
 	// The default alias for the DriveWorks Group
 	// This is a custom string that must match the name in the ConfigUser.xml file
 	groupAlias: "",
+	guestAlias: "",
 	// (Optional) Configure ping & update intervals - in seconds
     // (Optional) Set Specification ping interval - in seconds
     // A Specification will timeout after a configured period of inactivity (see DriveWorksConfigUser.xml).

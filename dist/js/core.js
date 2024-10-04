@@ -383,10 +383,25 @@ function passwordReset() {
 	if (!passwordResetLink) {
 		return
 	}
-	if (!config.accountManagement.allowChangePassword) {
+	if (!config.accountManagement || !config.accountManagement.resetPassword || isGuest()) {
+		// don't show the link if the config option is disabled or unset
+		// or if the user is a guest
 		passwordResetLink.style.display = "none"
 	} else {
 		passwordResetLink.href = config.accountManagement.resetPassword
 	}
+}
+
+/**
+ * Is user Guest?
+ * @return {boolean}
+ */
+function isGuest() {
+	const username = localStorage.getItem("sessionUsername")
+	const sessionAlias = localStorage.getItem("sessionAlias")
+	return (
+		username === "Guest" ||
+		sessionAlias === config.guestAlias
+	)
 }
 

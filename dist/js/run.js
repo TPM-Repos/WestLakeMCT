@@ -750,14 +750,15 @@ function existingSpecificationCancelled() {
 
 /**
  * Redirect On Close
+ * If Guest, redirect to logout
+ * If ResetPassword, redirect to login
+ * If close, redirect to config.redirectOnClose
+ * If cancel, redirect to config.redirectOnCancel
  */
 function redirectOnSpecAction(action = "close") {
-	const username = localStorage.getItem("sessionUsername")
-	const sessionAlias = localStorage.getItem("sessionAlias")
 	const isResetPassword = window.location.href.includes("ResetPassword")
 	if (
-		username === "Guest" ||
-		sessionAlias === config.query.defaultGroupAlias ||
+		isGuest() ||
 		isResetPassword
 	) {
 		page = "logout"
