@@ -92,6 +92,7 @@ version: "1.2.9",
 	// Whether to show debugging information in the console
 	debug: false,
 	allowSingleSignOn: false,
+	disableRegularLogin: false,
 	guestLogin: {
 		// Adds button to login that allows login as Guest
 		// Requires an alias with username and password to be set in the DriveWorksConfigUser.xml file
