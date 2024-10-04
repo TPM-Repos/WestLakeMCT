@@ -61,6 +61,12 @@ if (QUERY_DRIVE_APP_ALIAS) {
  * Start page functions.
  */
 function startPageFunctions() {
+	// Don't Allow Guest's to change the password
+	if (isGuest() && isResetPassword()) {
+		renderError("As a Guest you don't have access to this page", "error")
+		return
+	}
+
 	setCustomClientErrorHandler()
 
 	// Show confirmation dialog before logout
@@ -756,10 +762,8 @@ function existingSpecificationCancelled() {
  * If cancel, redirect to config.redirectOnCancel
  */
 function redirectOnSpecAction(action = "close") {
-	const isResetPassword = window.location.href.includes("ResetPassword")
 	if (
-		isGuest() ||
-		isResetPassword
+		isGuest() || isResetPassword()
 	) {
 		page = "logout"
 	} else if (action === "close") {
@@ -772,6 +776,14 @@ function redirectOnSpecAction(action = "close") {
 	} else {
 		window.location.href = `${page}?specification=${rootSpecificationId}`
 	}
+}
+
+/**
+ * Is the current page "Reset Password"?
+ * @returns {boolean}
+ */
+function isResetPassword() {
+	return ( URL_QUERY.get("DWMacroNavigate") === "ResetPassword" )
 }
 
 /**
