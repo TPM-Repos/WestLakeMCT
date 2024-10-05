@@ -90,7 +90,6 @@ let client;
 		}
 	}
 
-
 	if (createAccountButton) {
 		if (config.accountManagement.createAccount) {
 			createAccountButton.addEventListener("click", createAccount)
@@ -547,3 +546,4 @@ function dwClientLoadError() {
 	loginError(clientErrorMessage)
 	removeSkeleton()
 }
+
