@@ -61,6 +61,10 @@ let client;
 
 	loginForm.addEventListener("submit", handleLoginForm)
 
+	if (loginPassword && config.passwordRequired) {
+		loginPassword.required = true
+	}
+
 	if (loginSSOButton) {
 		if (config.allowSingleSignOn) {
 			loginSSOButton.addEventListener("click", handleLoginSSO)
