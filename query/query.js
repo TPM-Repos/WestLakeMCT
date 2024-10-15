@@ -1,4 +1,4 @@
-// Version 1.2.0
+// Version 1.3.0
 /**
  * Query Function (/query?...)
  * ---------------------------
@@ -57,7 +57,7 @@
  */
 
 // Enable console output to assist debugging
-const DEBUG_MODE = false
+const DEBUG_MODE = config.debug
 
 // Load settings from config file (configUser.js)
 const REQUIRE_NEW_SESSION = config.query.requireNewSession

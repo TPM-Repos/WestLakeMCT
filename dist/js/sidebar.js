@@ -1,4 +1,4 @@
-// Version 1.2.1
+// Version 1.3.0
 
 /**
  * @param {string} title The text to display in the sidebar

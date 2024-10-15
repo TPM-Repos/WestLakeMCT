@@ -1,4 +1,4 @@
-/* Version 1.2.6 */
+/* Version 1.3.0 */
 /**
 * HISTORY
 */
@@ -94,7 +94,7 @@ button {
 
 .history-controls .date-toggle {
 	min-width: 14em;
-	padding-right: 0;
+	/* padding-right: 0; */
 }
 .history-controls .date-toggle span {
 	text-transform: capitalize;
@@ -555,3 +555,4 @@ button {
 .history-skeleton *:nth-child(5) {
 	opacity: 0.15;
 }
+

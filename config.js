@@ -1,5 +1,5 @@
 // COPY THIS FILE TO 'configUser.js' AND UPDATE THE VALUES TO MATCH YOUR SERVER URL & GROUP ALIAS
-// Version 1.2.9
+// Version 1.3.0
 
 const config = {
 version: "1.2.9",
@@ -9,6 +9,7 @@ version: "1.2.9",
 	// The default alias for the DriveWorks Group
 	// This is a custom string that must match the name in the ConfigUser.xml file
 	groupAlias: "",
+	guestAlias: "",
 	// (Optional) Configure ping & update intervals - in seconds
     // (Optional) Set Specification ping interval - in seconds
     // A Specification will timeout after a configured period of inactivity (see DriveWorksConfigUser.xml).
@@ -26,6 +27,10 @@ version: "1.2.9",
 	},
 	logout: {
 		redirectUrl: "index.html",
+	},
+	history: {
+		specLimitOnPage: 10,
+		dateOrder: "desc",
 	},
 	project: {
 		// you may put "logout" instead of a page location
@@ -74,6 +79,7 @@ version: "1.2.9",
 	// Set whether a username or email address will be used
 	// username | email address
 	usernameType: "Username",
+    passwordRequired: false,
 	loginReturnUrls: true, // Toggle appending return urls to restore the previous location when redirected to the login form
 	locale: "en-US", // Set the default locale for displaying dates and numbers
 	dateFormat: {
@@ -87,15 +93,27 @@ version: "1.2.9",
 	// Whether to show debugging information in the console
 	debug: false,
 	allowSingleSignOn: false,
+	disableRegularLogin: false,
 	guestLogin: {
+		// Adds button to login that allows login as Guest
+		// Requires an alias with username and password to be set in the DriveWorksConfigUser.xml file
 		enabled: true,
-		alias: "Corporate Guest",
+		// uses guestAlias, but can be set to a different alias by uncommenting the following line
+		// alias: "Guest",
 	},
+	// In order to use the Account Management features you will need a project in your DriveWorks Group
+	// You will also need to allow all users (and Guest) to run the Macro called Navigate
+	// CreateAccount and ForgotPassword require the macro to be enabled in the Guest Alias
 	accountManagement: {
-		createAccount: "query?alias=TemplatesGuest&run=AccountManagement&DWMacroNavigate=CreateAccount",
-		forgotPassword: "query?alias=TemplatesGuest&run=AccountManagement&DWMacroNavigate=ForgotPassword",
-		resetPassword:
-			"query?alias=Templates&run=AccountManagement&DWMacroNavigate=ResetPassword",
+		// uses guestAlias, but can be set to a different alias by uncommenting the following line
+		// guestAlias: "Guest",
+		projectName: "AccountManagement",
+		// these three options can be true, false, or a string
+			// if a string is provided it will be the entire URL for example: "query?alias=development&run=AccountManagement&DWMacroNavigate=ResetPassword"
+			// only set the string if you are not using the TPM Account Management project
+		createAccount: true,
+		forgotPassword: true,
+		resetPassword: true,
 	},
 	sidebarLinks: [
 		{

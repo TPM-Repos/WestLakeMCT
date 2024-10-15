@@ -1,4 +1,4 @@
-// Version 1.2.6
+// Version 1.3.0
 // The purpose of this file is UI tweaks that should be run on all pages.
 // core.js only runs on pages the user is logged in to.
 

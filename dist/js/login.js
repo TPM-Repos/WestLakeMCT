@@ -1,4 +1,4 @@
-// Version 1.2.9
+// Version 1.3.0
 /**
  * LOGIN
  */
@@ -8,6 +8,14 @@ let LOGIN_REDIRECT_URL = config.login.redirectUrl
 let GROUP_ALIAS = config.groupAlias
 const URL_QUERY = new URLSearchParams(window.location.search)
 const delay = ms => new Promise(res => setTimeout(res, ms));
+
+// Account Management
+const AM_GUEST_ALIAS = config.accountManagement?.guestAlias || config.guestAlias
+const AM_PROJECT_NAME = config.accountManagement?.projectName || "AccountManagement"
+const AM_QUERY_STRING = `query?alias=${AM_GUEST_ALIAS}&run=${AM_PROJECT_NAME}&DWMacroNavigate=`
+const CREATE_ACCOUNT_URL = AM_QUERY_STRING + (typeof config.accountManagement?.createAccount === 'string' ? config.accountManagement.createAccount : "CreateAccount");
+const FORGOT_PASSWORD_URL = AM_QUERY_STRING + (typeof config.accountManagement?.forgotPassword === 'string' ? config.accountManagement.forgotPassword : "ForgotPassword");
+const RESET_PASSWORD_URL = AM_QUERY_STRING + (typeof config.accountManagement?.resetPassword === 'string' ? config.accountManagement.resetPassword : "ResetPassword");
 
 // Elements
 const loginForm = document.getElementById("login-form")
@@ -53,6 +61,10 @@ let client;
 
 	loginForm.addEventListener("submit", handleLoginForm)
 
+	if (loginPassword && config.passwordRequired) {
+		loginPassword.required = true
+	}
+
 	if (loginSSOButton) {
 		if (config.allowSingleSignOn) {
 			loginSSOButton.addEventListener("click", handleLoginSSO)
@@ -71,8 +83,14 @@ let client;
 
 	if (forgotLink) {
 		if (config.accountManagement.forgotPassword) {
-			forgotLink.href = config.accountManagement.forgotPassword
+			forgotLink.href = FORGOT_PASSWORD_URL
 			forgotLink.classList.remove("hidden")
+		}
+	}
+
+	if (loginButton) {
+		if (config.disableRegularLogin) {
+			loginButton.classList.add("hidden")
 		}
 	}
 
@@ -196,7 +214,7 @@ function handleLoginSSO() {
 }
 
 function createAccount() {
-	window.location.href = `${window.location.origin}/${config.accountManagement.createAccount}`
+	window.location.href = CREATE_ACCOUNT_URL
 }
 
 function removeSkeleton() {
