@@ -2,7 +2,7 @@
 // Version 1.3.0
 
 const config = {
-version: "1.2.9",
+version: "1.3.0",
 	// the full path the site running the DriveWorks Live API
 	// serverUrl: "https://dw21.api.yourdomain.com",
 	serverUrl: "",
