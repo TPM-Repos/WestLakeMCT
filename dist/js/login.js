@@ -27,6 +27,8 @@ const loginNotice = document.getElementById("login-notice")
 const forgotLink = document.getElementById("forgot-link")
 const createAccountButton = document.getElementById("create-account-button")
 const copyright = document.querySelector(".login-copyright")
+const loginPassword = document.querySelector("#login-password")
+
 const usernameLabel = document.querySelector("#username-label")
 const usernameInput = document.querySelector("#login-username")
 const loginDivider = document.querySelector(".login-divider")
