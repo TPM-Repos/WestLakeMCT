@@ -1,11 +1,12 @@
 const config = {
-version: "1.2.9",
+	version: "1.3.0",
 	// the full path the site running the DriveWorks Live API
 	// serverUrl: "https://dw21.api.yourdomain.com",
-	serverUrl: "https://dw21.api.tpmautomation.com",
+	serverUrl: "https://dw22.api.tpmautomation.com",
 	// The default alias for the DriveWorks Group
 	// This is a custom string that must match the name in the ConfigUser.xml file
 	groupAlias: "Dover",
+	guestAlias: "",
 	// (Optional) Configure ping & update intervals - in seconds
     // (Optional) Set Specification ping interval - in seconds
     // A Specification will timeout after a configured period of inactivity (see DriveWorksConfigUser.xml).
@@ -84,16 +85,25 @@ version: "1.2.9",
 	// Whether to show debugging information in the console
 	debug: false,
 	allowSingleSignOn: false,
+	disableRegularLogin: false,
 	guestLogin: {
+		// Adds button to login that allows login as Guest
+		// Requires an alias with username and password to be set in the DriveWorksConfigUser.xml file
 		enabled: true,
-		alias: "Westlake Guest",
+		// uses guestAlias, but can be set to a different alias by uncommenting the following line
+		// alias: "Guest",
 	},
 	accountManagement: {
-		createAccount: "query?alias=TemplatesGuest&run=AccountManagement&DWMacroNavigate=CreateAccount",
-		forgotPassword: "query?alias=TemplatesGuest&run=AccountManagement&DWMacroNavigate=ForgotPassword",
-		resetPassword:
-			"query?alias=Templates&run=AccountManagement&DWMacroNavigate=ResetPassword",
-	},
+        // uses guestAlias, but can be set to a different alias by uncommenting the following line
+        // guestAlias: "Guest",
+        projectName: "AccountManagement",
+        // these three options can be true, false, or a string
+            // if a string is provided it will be the entire URL for example: "query?alias=development&run=AccountManagement&DWMacroNavigate=ResetPassword"
+            // only set the string if you are not using the TPM Account Management project
+        createAccount: true,
+        forgotPassword: true,
+        resetPassword: true,
+    },
 	sidebarLinks: [
 		{
 			title: "Projects",
