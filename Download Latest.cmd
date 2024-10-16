@@ -11,13 +11,13 @@ echo Press any key to continue...
 pause > nul
 
 echo Cloning repository...
-git clone "https://github.com/TPM-Repos/ModifiedCorporateTheme"
+git clone "https://github.com/TPM-Repos/WestLakeMCT"
 
 echo Copying files...
-xcopy /Y /E ".\ModifiedCorporateTheme\*" .
+xcopy /Y /E ".\WestLakeMCT\*" .
 
 echo Cleaning up...
-rmdir /S /Q "ModifiedCorporateTheme"
+rmdir /S /Q "WestLakeMCT"
 
 echo Done!
 echo Press any key to close this window...
