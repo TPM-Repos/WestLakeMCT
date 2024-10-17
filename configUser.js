@@ -5,8 +5,8 @@ const config = {
 	serverUrl: "https://dw22.api.tpmautomation.com",
 	// The default alias for the DriveWorks Group
 	// This is a custom string that must match the name in the ConfigUser.xml file
-	groupAlias: "Dover",
-	guestAlias: "",
+	groupAlias: "Westlake",
+	guestAlias: "WestlakeGuest",
 	// (Optional) Configure ping & update intervals - in seconds
     // (Optional) Set Specification ping interval - in seconds
     // A Specification will timeout after a configured period of inactivity (see DriveWorksConfigUser.xml).
@@ -14,7 +14,6 @@ const config = {
     // Disable the ping by setting to 0
     specificationPingInterval: 30,
 	// (Optional) Enter custom redirect URLs for login/logout and Project/DriveApp close/cancel
-	folder: "",
 	login: {
 		redirectUrl: "projects.html",
 		// set this if you want to redirect guest users to a different page
@@ -24,6 +23,11 @@ const config = {
 	},
 	logout: {
 		redirectUrl: "index.html",
+	},
+	history: {
+		specLimitOnPage: 10,
+		dateOrder: "desc",
+		showRunningSpecs: false,
 	},
 	project: {
 		// you may put "logout" instead of a page location
@@ -86,13 +90,7 @@ const config = {
 	debug: false,
 	allowSingleSignOn: false,
 	disableRegularLogin: false,
-	guestLogin: {
-		// Adds button to login that allows login as Guest
-		// Requires an alias with username and password to be set in the DriveWorksConfigUser.xml file
-		enabled: true,
-		// uses guestAlias, but can be set to a different alias by uncommenting the following line
-		// alias: "Guest",
-	},
+	guestLogin: true,
 	accountManagement: {
         // uses guestAlias, but can be set to a different alias by uncommenting the following line
         // guestAlias: "Guest",
