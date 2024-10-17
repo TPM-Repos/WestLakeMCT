@@ -3,8 +3,9 @@
  * SPECIFICATION HISTORY
  */
 
-const defaultLimit = config.history.specLimitOnPage
-const defaultDateOrder = config.history.dateOrder
+const defaultLimit = config.history.specLimitOnPage ?? 10
+const defaultDateOrder = config.history.dateOrder ?? "desc"
+const defaultRunningSpecVisibility = config.history.showRunningSpecs ?? false
 let renderedProperties = []
 
 const storageKeyName = "historyFilterName"
@@ -19,9 +20,8 @@ const runningSpecToggle = document.getElementById("running-spec-toggle")
 const expandToggle = document.getElementById("expand-toggle")
 const resetButton = document.getElementById("filter-reset-button")
 
-let filterDateOrder =
-	localStorage.getItem(storageKeyDateOrder) ?? defaultDateOrder
-	let runningSpecVisibility = localStorage.getItem(storageKeyRunningSpecVisibility) ?? defaultRunningSpecVisibility
+let filterDateOrder = 	localStorage.getItem(storageKeyDateOrder) ?? defaultDateOrder
+let runningSpecVisibility = localStorage.getItem(storageKeyRunningSpecVisibility) ?? defaultRunningSpecVisibility
 let isLoadingHistory = false
 let blockLazyLoading = false
 let expandedView = false
