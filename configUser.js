@@ -197,7 +197,11 @@ const config = {
         button: {
 			// not recommended to use %
             radius: "0",
-            color: "#3b5795",
+            color: "rgb(59, 87, 149)",
+			textColor: "white",
+			colorHover: "rgb(36, 58, 118)",
+			textColorHover: "white",
+			border: "none",
         },
         logo: {
             width: "50%"
