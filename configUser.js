@@ -108,11 +108,11 @@ const config = {
 			icon: "projects",
 			href: "projects.html",
 		},
-		// {
-		// 	title: "DriveApps",
-		// 	icon: "drive-apps",
-		// 	href: "drive-apps.html",
-		// },
+		{
+			title: "DriveApps",
+			icon: "drive-apps",
+			href: "drive-apps.html",
+		},
 		{
 			title: "History",
 			icon: "history",
