@@ -199,8 +199,12 @@ version: "1.3.0",
         },
         button: {
 			// not recommended to use %
-            radius: "2rem",
-            color: "#00AEEF",
+            radius: "0",
+            color: "rgb(59, 87, 149)",
+			textColor: "white",
+			colorHover: "rgb(36, 58, 118)",
+			textColorHover: "white",
+			border: "none",
         },
         logo: {
             width: "50%"
