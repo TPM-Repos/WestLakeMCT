@@ -59,7 +59,7 @@ const config = {
 		defaultGroupAlias: "",
 		defaultProjectName: "",
 		autoLogin: false,
-		requireNewSession: true,
+		requireNewSession: false,
 		requireExactAlias: false,
 	},
 	copyright: {
