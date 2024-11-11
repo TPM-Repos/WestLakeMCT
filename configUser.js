@@ -75,7 +75,7 @@ const config = {
 	siteName: "WestLake Corporation",
 	// Set whether a username or email address will be used
 	// username | email address
-	usernameType: "Username",
+	usernameType: "email address",
 	loginReturnUrls: true, // Toggle appending return urls to restore the previous location when redirected to the login form
 	locale: "en-US", // Set the default locale for displaying dates and numbers
 	dateFormat: {
