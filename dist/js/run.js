@@ -500,7 +500,6 @@ async function renderSpecificationActions() {
 	SPECIFICATION_ACTIONS.innerHTML = ""
 
 	for (const action of actions) {
-		const action = actions[actionIndex]
 		const name = action.name
 		const title = action.title
 		const type = action.type
