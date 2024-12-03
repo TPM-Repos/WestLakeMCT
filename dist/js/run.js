@@ -61,6 +61,9 @@ if (QUERY_DRIVE_APP_ALIAS) {
  * Start page functions.
  */
 function startPageFunctions() {
+	// Set username in header
+	showHeaderUsername()
+
 	// Don't Allow Guest's to change the password
 	if (isGuest() && isResetPassword()) {
 		renderError("As a Guest you don't have access to this page", "error")
@@ -1002,3 +1005,15 @@ function attachLogoutButtons() {
 	}
 }
 
+/**
+ * Set username in header
+ */
+function showHeaderUsername() {
+	const usernameOutput = document.querySelector("header .username")
+	const username = localStorage.getItem("sessionUsername")
+	if (!username || !usernameOutput) {
+		return
+	}
+
+	usernameOutput.innerHTML = username
+}
