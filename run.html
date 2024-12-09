@@ -10,24 +10,23 @@
 
 		<!-- Scripts -->
 		<script src="dist/js/loadClient.js?v=2024-11-10-1" defer></script>
-		<script src="configUser.js?v=2024-11-10-1" defer onload="loadClient()"></script>
+		<script src="configUser.js?v=2024-12-09-1" defer onload="loadClient()"></script>
 		<script src="dist/js/sidebar.js?v=2024-11-10-1" defer></script>
-		<script src="dist/js/run.js?v=2024-12-04-1" defer></script>
+		<script src="dist/js/run.js?v=2024-12-09-1" defer></script>
 		<script src="dist/js/ui.js?v=2024-11-10-1" defer></script>
 		<script src="dist/js/core.js?v=2024-11-10-1" defer></script>
 
 		<!-- Core Styles -->
 		<link rel="stylesheet" type="text/css" href="dist/css/reset.css" />
 		<link rel="stylesheet" type="text/css" href="dist/css/core.css" />
-		<link rel="stylesheet" type="text/css" href="dist/css/TailWind.css" />
 
 		<!-- Theme Styles (customizable) -->
 		<link
 			rel="stylesheet"
 			type="text/css"
-			href="dist/css/theme/theme.css"
+			href="dist/css/theme/theme.css?v=2024-12-09-1"
 		/>
-		<link rel="stylesheet" type="text/css" href="dist/css/theme/run.css" />
+		<link rel="stylesheet" type="text/css" href="dist/css/theme/run.css?v=2024-12-09-1" />
 		<link
 			rel="stylesheet"
 			type="text/css"
@@ -45,40 +44,34 @@
 	</head>
 
 	<body
-		class="template-run text-brand-primary flex flex-col w-full h-screen vsc-initialized"
+		class="template-run"
 	>
-		<header
-			class="relative z-10 flex items-center w-full h-16 bg-white px-2 shadow-md"
-		>
-			<div class="row mx-auto flex items-center">
-				<div class="flex flex-1 overflow-hidden">
-					<svg class="w-6 h-6 ml-3 sm:ml-8 mr-2 shrink-0">
-						<use xlink:href="dist/icons.svg#user"></use>
-					</svg>
-					<span data-username="" class="truncate username is-shown" id="active-username"
-						>Customer</span
-					>
-				</div>
 
-				<div class="mx-3">
-					<img id="logo" />
-				</div>
+	<header class="header">
+        <button class="profile-button" id="profileButton">
+            <svg>
+                <use xlink:href="dist/icons.svg#user"></use>
+            </svg>
+            <span data-username="" class="username is-shown" id="active-username">
+                Customer
+            </span>
+        </button>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="#account">
+				<svg>
+					<use xlink:href="dist/icons.svg#account-cog"></use>
+				</svg>
+				Account Management</a>
+            <a href="#password">Reset Password</a>
+            <a href="?bye" data-logout="">
+				<svg>
+					<use xlink:href="dist/icons.svg#logout"></use>
+				</svg>
+				Log out</a>
+        </div>
+    </header>
 
-				<div class="flex flex-1 justify-end">
-					<a href="?bye"
-						data-logout=""
-						class="flex pl-2 pr-3 py-2 border-2 border-transparent hover:border-2 hover:border-gray-300 transition-colors whitespace-nowrap"
-					>
-					<svg class="w-6 h-6 mr-2">
-						<use xlink:href="dist/icons.svg#logout"></use>	
-					</svg>
-						Log out
-					</a>
-				</div>
-			</div>
-		</header>
-
-		<main class="content-wrap styled-loading flex-1">
+		<main class="content-wrap styled-loading">
 			<aside
 				id="content-navigation"
 				class="content-nav"
