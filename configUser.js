@@ -5,8 +5,8 @@ const config = {
 	serverUrl: "https://dwapi22wws.westlake.com/",
 	// The default alias for the DriveWorks Group
 	// This is a custom string that must match the name in the ConfigUser.xml file
-	groupAlias: "WestlakeSTAGING",
-	guestAlias: "WestlakeSTAGINGGuest",
+	groupAlias: "WestlakeDEV",
+	guestAlias: "WestlakeDEVGuest",
 	// (Optional) Configure ping & update intervals - in seconds
     // (Optional) Set Specification ping interval - in seconds
     // A Specification will timeout after a configured period of inactivity (see DriveWorksConfigUser.xml).
@@ -15,7 +15,7 @@ const config = {
     specificationPingInterval: 30,
 	// (Optional) Enter custom redirect URLs for login/logout and Project/DriveApp close/cancel
 	login: {
-		redirectUrl: "run.html?driveApp=WWS",
+		redirectUrl: "projects.html",
 		// set this if you want to redirect guest users to a different page
 		redirectGuestUrl: "projects.html",
 		// Set this to left, center, or right to position the login form on the page
@@ -69,7 +69,7 @@ const config = {
 	},
 	// Add a watermark over pages in order to indicate that the site is a development site
 	// comment out or set to "" to disable
-	watermark: "Staging",
+	watermark: "Development",
 	// Set the title of the site, this will be displayed in the browser tab
 	// pageName | siteName
 	siteName: "WestLake Corporation",
