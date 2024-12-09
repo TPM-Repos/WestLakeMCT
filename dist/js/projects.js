@@ -55,6 +55,15 @@ function renderProjects(projects) {
 	// Loop out Projects
 	for (let index = 0; index < projects.length; index++) {
 		const project = projects[index]
+		// skip projects that are hidden
+		if (config.projects && config.projects.projectsToHide) {
+			if (
+				config.projects.projectsToHide.includes(project.alias) ||
+				config.projects.projectsToHide.includes(project.name)
+			) {
+				continue
+			}
+		}
 		const name = project.alias || project.name
 		const description = project.description
 		let imagePath = project.absoluteImagePath

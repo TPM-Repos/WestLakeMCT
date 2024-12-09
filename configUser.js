@@ -33,6 +33,11 @@ const config = {
 		// you may put "logout" instead of a page location
 		redirectOnClose: "details.html",
 		redirectOnCancel: "projects.html",
+		showHeader: false,
+	},
+	projects: {
+		// an array of project names to hide from the projects list
+		projectsToHide: ["Account Management"],
 	},
 	driveApp: {
 		// you may put "logout" instead of a page location
@@ -118,6 +123,11 @@ const config = {
 			title: "History",
 			icon: "history",
 			href: "history.html",
+		},
+		{
+			title: "Manage Accounts",
+			icon: "account-cog",
+			href: "run.html?project=AccountManagement",
 		},
 	],
 	images: {
