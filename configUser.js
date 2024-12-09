@@ -2,11 +2,11 @@ const config = {
 	version: "1.3.0",
 	// the full path the site running the DriveWorks Live API
 	// serverUrl: "https://dw21.api.yourdomain.com",
-	serverUrl: "https://dw22.api.tpmautomation.com",
+	serverUrl: "https://dwapi22wws.westlake.com/",
 	// The default alias for the DriveWorks Group
 	// This is a custom string that must match the name in the ConfigUser.xml file
-	groupAlias: "Westlake",
-	guestAlias: "WestlakeGuest",
+	groupAlias: "WestlakeSTAGING",
+	guestAlias: "WestlakeSTAGINGGuest",
 	// (Optional) Configure ping & update intervals - in seconds
     // (Optional) Set Specification ping interval - in seconds
     // A Specification will timeout after a configured period of inactivity (see DriveWorksConfigUser.xml).
@@ -15,7 +15,7 @@ const config = {
     specificationPingInterval: 30,
 	// (Optional) Enter custom redirect URLs for login/logout and Project/DriveApp close/cancel
 	login: {
-		redirectUrl: "projects.html",
+		redirectUrl: "run.html?driveApp=WWS",
 		// set this if you want to redirect guest users to a different page
 		redirectGuestUrl: "projects.html",
 		// Set this to left, center, or right to position the login form on the page
@@ -60,7 +60,7 @@ const config = {
 		defaultProjectName: "",
 		autoLogin: false,
 		requireNewSession: false,
-		requireExactAlias: false,
+		requireExactAlias: true,
 	},
 	copyright: {
 		show: true,
@@ -69,7 +69,7 @@ const config = {
 	},
 	// Add a watermark over pages in order to indicate that the site is a development site
 	// comment out or set to "" to disable
-	watermark: "Development",
+	watermark: "Staging",
 	// Set the title of the site, this will be displayed in the browser tab
 	// pageName | siteName
 	siteName: "WestLake Corporation",
@@ -90,7 +90,7 @@ const config = {
 	debug: false,
 	allowSingleSignOn: false,
 	disableRegularLogin: false,
-	guestLogin: true,
+	guestLogin: false,
 	accountManagement: {
         // uses guestAlias, but can be set to a different alias by uncommenting the following line
         // guestAlias: "Guest",
