@@ -189,6 +189,11 @@ const config = {
             logoPadding: "1em",
 			textColor: "black",
         },
+	header: {
+		background: "white",
+		height: "30px",
+		textColor: "black",
+	},
         loginForm: {
             background: "white",
             padding: "1em",
