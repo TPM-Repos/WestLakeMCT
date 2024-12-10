@@ -38,6 +38,7 @@ const config = {
 		// you may put "logout" instead of a page location
 		redirectOnClose: "details.html",
 		redirectOnCancel: "drive-apps.html",
+		showHeader: true,
 	},
 	// (Optional) Configure 'Run' view
 	run: {
