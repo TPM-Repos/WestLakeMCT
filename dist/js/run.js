@@ -1041,5 +1041,5 @@ document.addEventListener("click", (e) => {
 // we can hide or show it by setting showHeader to true or false
 // we know if this is a project if we have a project name
 if((QUERY_PROJECT_NAME && !config.project.showHeader) || (QUERY_DRIVE_APP_ALIAS && !config.driveApp.showHeader)) {
-	document.querySelector("header").classList.remove("hidden");
+	document.querySelector("header").classList.add("hidden");
 }
