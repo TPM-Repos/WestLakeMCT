@@ -38,6 +38,7 @@ const config = {
 		// you may put "logout" instead of a page location
 		redirectOnClose: "details.html",
 		redirectOnCancel: "drive-apps.html",
+		showHeader: true,
 	},
 	// (Optional) Configure 'Run' view
 	run: {
@@ -125,8 +126,8 @@ const config = {
 		// Here is an example with svgs and with pngs
 		// login: "dist/img/logo-dark.svg",
 		// sidebar: "dist/img/logo-light.svg",
-		login: "dist/img/logo.png",
-		sidebar: "dist/img/logo.png",
+		login: "dist/img/logo-transparent-cropped.png",
+		sidebar: "dist/img/logo-transparent-cropped.png",
 		// By default the login screen will show a static cover image
 		// You can change it to a different image here.
 		loginCover: "dist/img/login-cover.png",
@@ -189,6 +190,11 @@ const config = {
             logoPadding: "1em",
 			textColor: "black",
         },
+		header: {
+			background: "white",
+			height: "30px",
+			textColor: "black",
+		},
         loginForm: {
             background: "white",
             padding: "1em",
